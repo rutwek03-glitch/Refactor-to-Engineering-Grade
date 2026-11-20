@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Apex Care Hospital - Medical Services, Specialist Doctors, and Online Patient Appointment Booking." />
+  <title>Apex Care Hospital | Patient Appointment Portal</title>
+  <style>
+    /* Minimal baseline styles for clarity and keyboard focus visibility */
+    body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; margin: 0; color: #1a202c; }
+    .skip-link { position: absolute; left: -999px; background: #005fcc; color: #fff; padding: 0.75rem 1rem; z-index: 100; }
+    .skip-link:focus { left: 1rem; top: 1rem; }
+    header, main, footer { max-width: 960px; margin: 0 auto; padding: 1.5rem; }
+    nav ul { list-style: none; padding: 0; display: flex; gap: 1.5rem; }
+    a:focus, button:focus, input:focus, select:focus, textarea:focus { outline: 3px solid #005fcc; outline-offset: 2px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
+    article { border: 1px solid #cbd5e0; border-radius: 6px; padding: 1rem; }
+    fieldset { border: 1px solid #cbd5e0; border-radius: 6px; padding: 1.25rem; margin-bottom: 1.5rem; }
+    legend { font-weight: 700; padding: 0 0.5rem; }
+    .form-group { margin-bottom: 1rem; display: flex; flex-direction: column; }
+    label { font-weight: 600; margin-bottom: 0.25rem; }
+    input, select, textarea { padding: 0.5rem; font-size: 1rem; border: 1px solid #718096; border-radius: 4px; }
+    button { background: #0b5ed7; color: #fff; border: none; padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: 600; border-radius: 4px; cursor: pointer; }
+    button:hover { background: #094db1; }
+    .help-text { font-size: 0.875rem; color: #4a5568; margin-top: 0.25rem; }
+  </style>
+</head>
+<body>
+  <!-- Skip Navigation Link for Keyboard & Screen Reader Users -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header>
+    <h1>Apex Care Multi-Specialty Hospital</h1>
+    <p>24/7 Emergency &amp; Outpatient Clinical Care</p>
+    <nav aria-label="Primary Navigation">
+      <ul>
+        <li><a href="#services">Hospital Services</a></li>
+        <li><a href="#doctors">Our Doctors</a></li>
+        <li><a href="#appointment">Book Appointment</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <!-- Section 1: Hospital Services -->
+    <section id="services" aria-labelledby="services-heading">
+      <h2 id="services-heading">Hospital Services</h2>
+      <div class="grid">
+        <article>
+          <h3>Cardiology &amp; Heart Care</h3>
+          <p>Non-invasive diagnostics, echocardiography, and interventional cardiac procedures.</p>
+        </article>
+        <article>
+          <h3>Neurology &amp; Spine</h3>
+          <p>Comprehensive stroke management, EEG diagnostics, and neuro-rehabilitation.</p>
+        </article>
+        <article>
+          <h3>Diagnostics &amp; Pathology</h3>
+          <p>NABL-accredited 24-hour laboratory testing, MRI, and digital radiology.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Section 2: Doctor Information -->
+    <section id="doctors" aria-labelledby="doctors-heading">
+      <h2 id="doctors-heading">Specialist Doctors</h2>
+      <div class="grid">
+        <article>
+          <h3>Dr. Ananya Rao, MD, DM</h3>
+          <p><strong>Department:</strong> Cardiology</p>
+          <p><strong>Availability:</strong> Mon – Fri, 9:00 AM – 2:00 PM</p>
+        </article>
+        <article>
+          <h3>Dr. Vikramaditya Sharma, MS, MCh</h3>
+          <p><strong>Department:</strong> Neurology</p>
+          <p><strong>Availability:</strong> Tue – Sat, 11:00 AM – 4:00 PM</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Section 3: Accessible Patient Appointment Form -->
+    <section id="appointment" aria-labelledby="appointment-heading">
+      <h2 id="appointment-heading">Book a Patient Appointment</h2>
+      <p id="form-instructions">Fields marked with an asterisk (<span aria-hidden="true">*</span>) are required.</p>
+
+      <form action="/submit-appointment" method="POST" aria-describedby="form-instructions">
+        <!-- Group 1: Patient Demographics -->
+        <fieldset>
+          <legend>Patient Information</legend>
+
+          <div class="form-group">
+            <label for="patient-name">Full Name <span aria-hidden="true">*</span></label>
+            <input 
+              type="text" 
+              id="patient-name" 
+              name="patientName" 
+              autocomplete="name" 
+              required 
+              minlength="2" 
+              aria-required="true" 
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="patient-email">Email Address <span aria-hidden="true">*</span></label>
+            <input 
+              type="email" 
+              id="patient-email" 
+              name="patientEmail" 
+              autocomplete="email" 
+              required 
+              aria-required="true" 
+              aria-describedby="email-hint" 
+            />
+            <span id="email-hint" class="help-text">Appointment confirmation will be sent to this email.</span>
+          </div>
+
+          <div class="form-group">
+            <label for="patient-phone">Mobile Number <span aria-hidden="true">*</span></label>
+            <input 
+              type="tel" 
+              id="patient-phone" 
+              name="patientPhone" 
+              autocomplete="tel" 
+              pattern="[0-9]{10}" 
+              placeholder="10-digit mobile number" 
+              required 
+              aria-required="true" 
+              aria-describedby="phone-hint" 
+            />
+            <span id="phone-hint" class="help-text">Enter a 10-digit phone number without spaces or dashes.</span>
+          </div>
+
+          <div class="form-group">
+            <label for="patient-dob">Date of Birth <span aria-hidden="true">*</span></label>
+            <input 
+              type="date" 
+              id="patient-dob" 
+              name="patientDob" 
+              autocomplete="bday" 
+              required 
+              aria-required="true" 
+            />
+          </div>
+        </fieldset>
+
+        <!-- Group 2: Consultation Details -->
+        <fieldset>
+          <legend>Consultation Details</legend>
+
+          <div class="form-group">
+            <label for="department">Select Department <span aria-hidden="true">*</span></label>
+            <select id="department" name="department" required aria-required="true">
+              <option value="">-- Choose a Medical Department --</option>
+              <option value="cardiology">Cardiology</option>
+              <option value="neurology">Neurology</option>
+              <option value="general">General Medicine</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="preferred-date">Preferred Appointment Date <span aria-hidden="true">*</span></label>
+            <input 
+              type="date" 
+              id="preferred-date" 
+              name="preferredDate" 
+              required 
+              aria-required="true" 
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="preferred-time">Preferred Time Slot <span aria-hidden="true">*</span></label>
+            <input 
+              type="time" 
+              id="preferred-time" 
+              name="preferredTime" 
+              min="09:00" 
+              max="17:00" 
+              required 
+              aria-required="true" 
+              aria-describedby="time-hint" 
+            />
+            <span id="time-hint" class="help-text">Outpatient hours are between 09:00 AM and 05:00 PM.</span>
+          </div>
+
+          <div class="form-group">
+            <label for="symptoms">Reason for Visit / Symptoms</label>
+            <textarea 
+              id="symptoms" 
+              name="symptoms" 
+              rows="4" 
+              maxlength="500" 
+              aria-describedby="symptoms-hint"
+            ></textarea>
+            <span id="symptoms-hint" class="help-text">Optional. Briefly describe your symptoms (max 500 characters).</span>
+          </div>
+        </fieldset>
+
+        <button type="submit">Confirm Appointment</button>
+      </form>
+    </section>
+  </main>
+
+  <footer id="contact">
+    <h2>Contact &amp; Location</h2>
+    <address>
+      Apex Care Hospital, MG Road, Vijayawada, Andhra Pradesh<br />
+      Emergency Helpline: <a href="tel:+918662550100">+91 866-255-0100</a><br />
+      Email: <a href="mailto:appointments@apexcarehospital.example">appointments@apexcarehospital.example</a>
+    </address>
+    <p>&copy; 2026 Apex Care Hospital. All rights reserved.</p>
+  </footer>
+</body>
+</html>
